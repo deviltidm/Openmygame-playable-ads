@@ -128,35 +128,41 @@ function calculateStars() {
 
 function show_win() {
  playSound('win');
+ consoleLog('ВЫЗВАН show_win, big_blocks=', big_blocks);
 
  var stars = calculateStars();
 
  showWindow('win', wnd => {
+  consoleLog('showWindow callback сработал, wnd=', wnd);
   wnd.__setAliasesData({
    star_1(node) {
-    if (stars < 1) node.__removeFromParent();
+    node.__visible = stars >= 1;
    },
    star_2(node) {
-    if (stars < 2) node.__removeFromParent();
+    node.__visible = stars >= 2;
    },
    star_3(node) {
-    if (stars < 3) node.__removeFromParent();
+    node.__visible = stars >= 3;
    },
-   button: {
-    __onTap(){
-     goToNextLevel();
-    },
-    __onTapHighlight: 1
-   }
+  button: {
+ __onTap(){
+  consoleLog('КЛИК ПО КНОПКЕ');
+  windowManager.__closeAllWindows();
+  goToNextLevel();
+ },
+ __onTapHighlight: 1
+}
   })
  })
 }
 
 function goToNextLevel() {
+ consoleLog('НАЖАТА КНОПКА, текущий индекс:', currentLevelIndex);
  currentLevelIndex++;
  if (currentLevelIndex >= LEVELS.length) {
   currentLevelIndex = 0;
  }
+ consoleLog('НОВЫЙ индекс:', currentLevelIndex, 'загружаю уровень:', LEVELS[currentLevelIndex]);
  bullets_used = 0;
  big_blocks = 0;
  blocks = [];
@@ -250,3 +256,7 @@ BUS.__addEventListener(
   return 1;
  }
 );
+console.log(typeof showWindow)
+console.log(windowManager)
+console.log(Object.getOwnPropertyNames(windowManager))
+console.log(windowManager.__topWindow())
