@@ -180,48 +180,59 @@ function initLevel(levelName){
     rubber = node;
    },
    userInputArea: {
-    __dragDist: 1,
-    __drag(x, y, dx, dy) {
-     var dmouse = this.__dmouse = this.__worldPosition.__clone().sub(new Vector2(x, y));
-     rubber.__parent.__rotate = -dmouse.__angle() * RAD2DEG;
-     rubber.__width = dmouse.__length();
-    },
-    __dragStart() {
-     rubber.__killAllAnimations();
-    },
-    __dragEnd() {
-     playSound('punch');
-     bullets_used++;
-     rubber.__anim({
-      __width: 10
-     }, 0.4, 0, easeElasticO);
+ __dragDist: 1,
+ __drag(x, y, dx, dy) {
+  var dmouse = this.__dmouse = this.__worldPosition.__clone().sub(new Vector2(x, y));
+  
+  var maxDrag = 150;
+  var len = Math.sqrt(dmouse.x * dmouse.x + dmouse.y * dmouse.y);
+  if (len > maxDrag) {
+   var scale = maxDrag / len;
+   dmouse.x *= scale;
+   dmouse.y *= scale;
+   this.__dmouse = dmouse;
+  }
+  
+  rubber.__parent.__rotate = -dmouse.__angle() * RAD2DEG;
+  rubber.__width = dmouse.__length();
+ },
+ __dragStart() {
+  rubber.__killAllAnimations();
+ },
+ __dragEnd() {
+  playSound('punch');
+  bullets_used++;
+  rubber.__anim({
+   __width: 10
+  }, 0.4, 0, easeElasticO);
 
-     var wp = this.__worldPosition, bullet = level.__addChildBox({
-       __effect: 'tail',
-       __img: 'circle1',
-       __size: [28, 28],
-       __ofs: [wp.x, wp.y, -20],
-       __physics: {
-        __isStatic: false,
-        __friction: 130,
-        __frictionAir: 0.2,
-        __frictionStatic: 500,
-        __restitution: 10,
-        __density: 4,
-        __bodyType: 1
-       }
-      }).update()
-      , velocity = this.__dmouse.__multiplyScalar(0.2);
-
-     if (bullet.__ph_body) {
-      ph_Body.setVelocity(bullet.__ph_body, velocity);
-     }
-
-     _setTimeout(() => {
-      bullet.__removeFromParent();
-     }, 2);
+  var wp = this.__worldPosition
+   , bullet = level.__addChildBox({
+    __effect: 'tail',
+    __img: 'circle1',
+    __size: [28, 28],
+    __ofs: [wp.x, wp.y, -20],
+    __physics: {
+     __isStatic: false,
+     __friction: 130,
+     __frictionAir: 0.2,
+     __frictionStatic: 500,
+     __restitution: 10,
+     __density: 4,
+     __bodyType: 1
     }
-   }
+   }).update()
+   , velocity = this.__dmouse.__multiplyScalar(0.2);
+
+  if (bullet.__ph_body) {
+   ph_Body.setVelocity(bullet.__ph_body, velocity);
+  }
+
+  _setTimeout(() => {
+   bullet.__removeFromParent();
+  }, 2);
+ }
+}
   });
 
  _setTimeout(a => {
