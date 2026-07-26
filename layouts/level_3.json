@@ -7,7 +7,7 @@
     ],
     "__childs": {
       "userInputArea": {
-        "__img": "my_satoru",
+        "__img": "my_sss.png",
         "sha": 0,
         "sva": 2,
         "__size": [
@@ -15,8 +15,8 @@
           597
         ],
         "__ofs": [
-          -74,
-          -126,
+          -75,
+          -123,
           -15
         ],
         "__childs": {
@@ -57,8 +57,8 @@
           1
         ],
         "__ofs": [
-          13,
-          1
+          4,
+          6
         ],
         "__childs": {
           "_0": {
@@ -71,14 +71,14 @@
               "__density": 1,
               "__bodyType": 0
             },
-            "__img": "my_zoro",
+            "__img": "my_z.png",
             "__size": [
               241,
               221
             ],
             "__ofs": [
-              -410,
-              266
+              -427,
+              283
             ]
           },
           "ground": {
@@ -111,14 +111,14 @@
               "__density": 1,
               "__bodyType": 0
             },
-            "__img": "my_suk",
+            "__img": "my_sucuna.png",
             "__size": [
-              226,
+              213,
               227
             ],
             "__ofs": [
-              465,
-              268
+              482,
+              265
             ]
           },
           "_3": {
@@ -131,7 +131,7 @@
               "__density": 1,
               "__bodyType": 0
             },
-            "__img": "my_ten",
+            "__img": "my_tenn.png",
             "__size": [
               267,
               246
@@ -151,14 +151,14 @@
               "__density": 1,
               "__bodyType": 1
             },
-            "__img": "my_dr",
+            "__img": "dr",
             "__size": [
               195,
               206
             ],
             "__ofs": [
-              452,
-              -225
+              415,
+              -226
             ]
           },
           "wall": {

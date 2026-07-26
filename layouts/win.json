@@ -80,7 +80,7 @@
         ],
         "__childs": {
           "star_1": {
-            "__img": "star",
+            "__img": "star.png",
             "sva": 1.1,
             "__size": [
               100,
@@ -124,7 +124,7 @@
           },
           "star_2": {
             "__rotate": -13.21,
-            "__img": "star",
+            "__img": "star.png",
             "sva": 1.1,
             "__size": [
               100,
@@ -168,7 +168,7 @@
           },
           "star_3": {
             "__rotate": 10.87,
-            "__img": "star",
+            "__img": "star.png",
             "sva": 1.1,
             "__size": [
               100,
@@ -207,7 +207,7 @@
       },
       "button": {
         "__color": "#832aa0",
-        "__img": "circle1",
+        "__img": "star.png",
         "sva": 1.3,
         "__corner": [
           11,
